@@ -43,12 +43,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-[var(--background)] text-ink antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-white text-ink antialiased`}
       >
         <div className="relative min-h-screen overflow-x-hidden">
-          <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(250,184,38,0.22),_transparent_55%)]" />
-          <div className="pointer-events-none absolute inset-0 -z-30 bg-[radial-gradient(circle_at_20%_80%,_rgba(215,173,204,0.15),_transparent_50%)]" />
-          <div className="pointer-events-none absolute inset-0 -z-40 bg-[linear-gradient(180deg,_rgba(255,255,255,0.7)_0%,_rgba(255,248,234,0.9)_30%,_rgba(255,244,224,1)_100%)]" />
           <SiteHeader />
           <main className="mx-auto flex min-h-[calc(100vh-6rem)] w-full max-w-[1400px] flex-1 flex-col gap-16 px-6 pb-28 pt-20 md:pt-24 lg:pt-28 lg:px-10 xl:px-16">
             {children}

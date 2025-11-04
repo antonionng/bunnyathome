@@ -27,18 +27,18 @@ export function CurryStep({ catalog }: CurryStepProps) {
   return (
     <div className="space-y-8">
       <div className="space-y-2">
-        <span className="tag-pill bg-brand-curry/25 text-brand-black">Step 1 · Bunny filling</span>
-        <h2 className="text-3xl font-semibold text-ink">Choose your bunny chow filling.</h2>
+        <span className="tag-pill bg-brand-curry text-brand-black">Step 1 · Bunny filling</span>
+        <h2 className="text-3xl font-bold text-ink">Choose your bunny chow filling.</h2>
         <p className="text-base text-ink-muted">
           Each pouch serves 2-3 (580-600g) and includes spice boosters so you can nudge the heat right
-          here. We’ll sort bread and garnishes next.
+          here. We'll sort bread and garnishes next.
         </p>
       </div>
 
-      <div className="glass-panel space-y-6 p-6">
+      <div className="rounded-2xl border-2 border-black bg-white p-6 shadow-lg space-y-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <span className="tag-pill bg-brand-blue/20 text-brand-black">Heat dial</span>
-          <span className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-coral">
+          <span className="tag-pill bg-brand-blue text-brand-black">Heat dial</span>
+          <span className="text-sm font-bold uppercase tracking-[0.25em] text-brand-coral">
             {currySpiceLevel}
           </span>
         </div>
@@ -53,25 +53,25 @@ export function CurryStep({ catalog }: CurryStepProps) {
               key={level}
               onClick={() => setCurrySpiceLevel(level)}
               className={cn(
-                "flex items-center justify-center rounded-2xl border px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] transition",
+                "flex items-center justify-center rounded-lg border-2 px-4 py-3 text-sm font-bold uppercase tracking-[0.18em] transition shadow-md",
                 currySpiceLevel === level
-                  ? "border-brand-coral bg-brand-coral text-white shadow-lg shadow-brand-coral/30"
-                  : "border-border-subtle bg-surface text-ink hover:border-brand-coral/60"
+                  ? "border-black bg-brand-coral text-white"
+                  : "border-black bg-white text-ink hover:bg-gray-50"
               )}
             >
               {level}
             </button>
           ))}
         </div>
-        <div className="rounded-2xl border border-brand-green/40 bg-white p-4 text-sm text-ink">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-green">Chef note</p>
+        <div className="rounded-lg border-2 border-black bg-brand-green p-4 text-sm text-brand-black">
+          <p className="text-xs font-bold uppercase tracking-[0.25em]">Chef note</p>
           <p className="mt-2">
             {selectedCurry
               ? selectedCurry.heatNotes
               : "Select a curry to see spice notes and pairing tips."}
           </p>
         </div>
-        <Button variant="outline" size="md" className="w-full border-brand-curry/50 text-ink">
+        <Button variant="outline" size="md" className="w-full text-ink">
           Chef pairing video
         </Button>
       </div>
@@ -85,10 +85,10 @@ export function CurryStep({ catalog }: CurryStepProps) {
               key={curry.id}
               onClick={() => selectCurry(curry.id)}
               className={cn(
-                "glass-panel group flex flex-col overflow-hidden border-2 text-left transition transform",
+                "rounded-lg group flex flex-col overflow-hidden border-2 text-left transition transform shadow-lg",
                 isSelected
-                  ? "border-brand-curry/70 shadow-card"
-                  : "border-transparent hover:-translate-y-1"
+                  ? "border-black bg-brand-curry"
+                  : "border-black bg-white hover:-translate-y-1"
               )}
             >
               <div className="relative h-48 w-full overflow-hidden">
@@ -101,25 +101,25 @@ export function CurryStep({ catalog }: CurryStepProps) {
                   unoptimized
                 />
                 {curry.badge && (
-                  <span className="absolute left-4 top-4 rounded-full border border-brand-black/20 bg-white/90 px-3 py-1 text-xs font-semibold text-brand-black">
+                  <span className="absolute left-4 top-4 rounded-full border-2 border-black bg-white px-3 py-1 text-xs font-bold text-brand-black">
                     {curry.badge}
                   </span>
                 )}
               </div>
-              <div className="flex flex-1 flex-col gap-3 p-6">
+              <div className="flex flex-1 flex-col gap-3 p-6 bg-white">
                 <div className="flex items-center justify-between text-sm text-ink-muted">
-                  <span className="font-medium uppercase tracking-[0.18em] text-brand-coral">
+                  <span className="font-bold uppercase tracking-[0.18em] text-brand-coral">
                     Spice · {currySpiceLevel}
                   </span>
-                  <span className="rounded-full border border-brand-curry/60 px-3 py-1 text-xs font-semibold text-brand-black">
+                  <span className="rounded-full border-2 border-black bg-brand-curry px-3 py-1 text-xs font-bold text-brand-black">
                     £{(curry.price / 100).toFixed(2)}
                   </span>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-ink">{curry.name}</h3>
+                  <h3 className="text-xl font-bold text-ink">{curry.name}</h3>
                   <p className="text-sm text-ink-muted">{curry.description}</p>
                 </div>
-                <p className="mt-auto text-xs uppercase tracking-[0.2em] text-brand-coral">
+                <p className="mt-auto text-xs font-bold uppercase tracking-[0.2em] text-brand-coral">
                   {isSelected ? "Selected" : "Tap to select"}
                 </p>
               </div>

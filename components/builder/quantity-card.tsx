@@ -21,8 +21,8 @@ export function QuantityCard({ category, product, quantity }: QuantityCardProps)
   return (
     <div
       className={cn(
-        "glass-panel group flex flex-col overflow-hidden border-2 transition",
-        quantity > 0 ? "border-brand-curry/70" : "border-transparent hover:-translate-y-1"
+        "rounded-lg group flex flex-col overflow-hidden border-2 transition shadow-lg",
+        quantity > 0 ? "border-black bg-brand-green" : "border-black bg-white hover:-translate-y-1"
       )}
     >
       <div className="relative h-44 w-full overflow-hidden">
@@ -35,23 +35,23 @@ export function QuantityCard({ category, product, quantity }: QuantityCardProps)
           unoptimized
         />
         {product.badge && (
-          <span className="absolute left-4 top-4 rounded-full border border-brand-black/10 bg-white/90 px-3 py-1 text-xs font-semibold text-brand-black">
+          <span className="absolute left-4 top-4 rounded-full border-2 border-black bg-white px-3 py-1 text-xs font-bold text-brand-black">
             {product.badge}
           </span>
         )}
       </div>
-      <div className="flex flex-1 flex-col gap-4 p-6">
-        <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted">
+      <div className="flex flex-1 flex-col gap-4 p-6 bg-white">
+        <div className="flex items-center justify-between text-xs font-bold uppercase tracking-[0.2em] text-ink-muted">
           <span>{category}</span>
-          <span className="rounded-full border border-brand-curry/60 px-3 py-1 text-xs font-semibold text-brand-black">
+          <span className="rounded-full border-2 border-black bg-brand-curry px-3 py-1 text-xs font-bold text-brand-black">
             £{(product.price / 100).toFixed(2)}
           </span>
         </div>
         <div className="space-y-2">
-          <h3 className="text-lg font-semibold text-ink">{product.name}</h3>
+          <h3 className="text-lg font-bold text-ink">{product.name}</h3>
           <p className="text-sm text-ink-muted">{product.description}</p>
         </div>
-        <div className="mt-auto flex items-center justify-between rounded-full border border-brand-blue/40 bg-white/80 px-2 py-2 text-sm text-ink">
+        <div className="mt-auto flex items-center justify-between rounded-full border-2 border-black bg-white px-2 py-2 text-sm text-ink">
           <Button
             variant="ghost"
             size="sm"
@@ -61,7 +61,7 @@ export function QuantityCard({ category, product, quantity }: QuantityCardProps)
           >
             −
           </Button>
-          <span className="text-base font-semibold">{quantity}</span>
+          <span className="text-base font-bold">{quantity}</span>
           <Button
             variant="ghost"
             size="sm"
@@ -73,7 +73,7 @@ export function QuantityCard({ category, product, quantity }: QuantityCardProps)
           </Button>
         </div>
         {reachMax && (
-          <p className="text-xs text-brand-coral">
+          <p className="text-xs font-bold text-brand-coral">
             Max {product.maxQuantity} allowed to keep the loaf perfectly balanced.
           </p>
         )}

@@ -32,10 +32,10 @@ export function QuantityStep({
   return (
     <div className="space-y-8">
       <div className="space-y-2">
-        <span className="tag-pill bg-brand-blue/20 text-brand-black">{tagLabel}</span>
-        <h2 className="text-3xl font-semibold text-ink">{title}</h2>
+        <span className="tag-pill bg-brand-blue text-brand-black">{tagLabel}</span>
+        <h2 className="text-3xl font-bold text-ink">{title}</h2>
         <p className="max-w-2xl text-base text-ink-muted">{description}</p>
-        <p className="text-sm text-brand-coral">
+        <p className="text-sm font-bold text-brand-coral">
           {totalSelected > 0
             ? `${totalSelected} ${totalSelected === 1 ? "item" : "items"} locked in`
             : hint ?? "Add at least one to keep things balanced."}

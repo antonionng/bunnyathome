@@ -43,12 +43,12 @@ export function BunnyModal({ catalog, onMakeBunny, onSkip }: BunnyModalProps) {
   const imageSrc = filling.bunnyImage ?? filling.image;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-black/60 px-4 py-10 backdrop-blur">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-black/60 px-4 py-10">
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="bunny-modal-title"
-        className="w-full max-w-xl overflow-hidden rounded-[36px] border border-brand-curry/40 bg-white/95 shadow-[0_40px_120px_-70px_rgba(15,10,5,0.7)]"
+        className="w-full max-w-xl overflow-hidden rounded-2xl border-2 border-black bg-white shadow-2xl"
       >
         <div className="relative h-64 w-full overflow-hidden">
           <Image
@@ -62,8 +62,8 @@ export function BunnyModal({ catalog, onMakeBunny, onSkip }: BunnyModalProps) {
         </div>
         <div className="space-y-6 px-8 py-7">
           <div className="space-y-2">
-            <span className="tag-pill bg-brand-curry/20 text-brand-black">Make it a bunny</span>
-            <h2 id="bunny-modal-title" className="text-2xl font-semibold text-ink">
+            <span className="tag-pill bg-brand-curry text-brand-black">Make it a bunny</span>
+            <h2 id="bunny-modal-title" className="text-2xl font-bold text-ink">
               Finish {filling.name} with a loaf?
             </h2>
             <p className="text-sm text-ink-muted">
@@ -75,7 +75,7 @@ export function BunnyModal({ catalog, onMakeBunny, onSkip }: BunnyModalProps) {
             <Button className="w-full sm:w-auto" onClick={onMakeBunny}>
               Make it a bunny
             </Button>
-            <Button variant="outline" className="w-full sm:w-auto border-brand-curry/50 text-ink" onClick={onSkip}>
+            <Button variant="outline" className="w-full sm:w-auto text-ink" onClick={onSkip}>
               Not now
             </Button>
           </div>

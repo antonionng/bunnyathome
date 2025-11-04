@@ -155,16 +155,16 @@ export default function BuilderPage() {
   return (
     <div className="space-y-10">
       <div className="space-y-6">
-        <div className="glass-panel flex flex-col gap-4 p-6">
+        <div className="rounded-2xl border-2 border-black bg-white p-6 shadow-lg section-border-curry">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <span className="tag-pill bg-brand-curry/25 text-brand-black">Custom box builder</span>
-              <h1 className="mt-3 text-3xl font-semibold text-ink">
+              <span className="tag-pill bg-brand-curry text-brand-black">Custom box builder</span>
+              <h1 className="mt-3 text-3xl font-bold text-ink">
                 Craft your Durban bunny chow night.
               </h1>
             </div>
             <p className="max-w-xl text-sm text-ink-muted">
-              Tune spice levels, load up sides, and pick your ritual drinks. We’ll save this build to your
+              Tune spice levels, load up sides, and pick your ritual drinks. We'll save this build to your
               account soon.
             </p>
           </div>
@@ -175,12 +175,12 @@ export default function BuilderPage() {
       <div className="grid gap-8 lg:grid-cols-[minmax(0,_1fr)_380px]">
         <div className="space-y-12">
           {step === "summary" ? (
-            <div className="glass-panel flex flex-col gap-6 p-8 text-center">
-              <span className="tag-pill mx-auto bg-brand-green/25 text-brand-black">
+            <div className="rounded-2xl border-2 border-black bg-white p-8 shadow-lg text-center section-border-green">
+              <span className="tag-pill mx-auto bg-brand-green text-brand-black">
                 Step 5 · Summary
               </span>
-              <h2 className="text-3xl font-semibold text-ink">Your Durban feast is locked in.</h2>
-              <p className="mx-auto max-w-2xl text-base text-ink-muted">
+              <h2 className="mt-6 text-3xl font-bold text-ink">Your Durban feast is locked in.</h2>
+              <p className="mx-auto mt-4 max-w-2xl text-base text-ink-muted">
                 We're polishing the checkout flow — soon you'll send this box straight to your door or save
                 it for recurring deliveries. For now, take a screenshot or keep building.
               </p>

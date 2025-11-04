@@ -17,7 +17,7 @@ interface StepperProps {
 
 export function Stepper({ current, onStepClick }: StepperProps) {
   return (
-    <div className="glass-panel flex flex-wrap items-center justify-between gap-4 p-5 sm:flex-nowrap">
+    <div className="mt-4 flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap">
       {order.map((step, index) => {
         if (step === "summary") {
           const isActive = current === "summary";
@@ -25,26 +25,26 @@ export function Stepper({ current, onStepClick }: StepperProps) {
             <div
               key={step}
               className={cn(
-                "flex items-center gap-3 rounded-2xl border px-3 py-2",
+                "flex items-center gap-3 rounded-lg border-2 px-3 py-2",
                 isActive
-                  ? "border-brand-curry bg-brand-curry/15"
-                  : "border-border-subtle bg-white/70"
+                  ? "border-black bg-brand-curry shadow-md"
+                  : "border-black bg-white"
               )}
             >
               <span
                 className={cn(
-                  "h-10 w-10 rounded-full border text-center text-sm font-semibold leading-10",
+                  "h-10 w-10 rounded-full border-2 text-center text-sm font-bold leading-9",
                   isActive
-                    ? "border-brand-curry bg-brand-curry text-brand-black"
-                    : "border-border-subtle bg-white text-ink"
+                    ? "border-black bg-white text-brand-black"
+                    : "border-black bg-white text-ink"
                 )}
               >
                 {index + 1}
               </span>
               <span
                 className={cn(
-                  "text-sm font-semibold uppercase tracking-[0.2em]",
-                  isActive ? "text-ink" : "text-ink-muted"
+                  "text-sm font-bold uppercase tracking-[0.2em]",
+                  isActive ? "text-brand-black" : "text-ink-muted"
                 )}
               >
                 Summary
@@ -63,29 +63,29 @@ export function Stepper({ current, onStepClick }: StepperProps) {
             type="button"
             onClick={() => onStepClick?.(step)}
             className={cn(
-              "flex flex-1 items-center gap-3 rounded-2xl border px-3 py-2 text-left transition-colors",
+              "flex flex-1 items-center gap-3 rounded-lg border-2 px-3 py-2 text-left transition-colors shadow-md",
               isActive
-                ? "border-brand-curry bg-brand-curry/15 text-ink"
+                ? "border-black bg-brand-curry text-brand-black"
                 : isCompleted
-                  ? "border-brand-green/50 bg-brand-green/15 text-ink"
-                  : "border-border-subtle bg-surface text-ink-muted hover:border-brand-curry/40"
+                  ? "border-black bg-brand-green text-brand-black"
+                  : "border-black bg-white text-ink hover:bg-gray-50"
             )}
           >
             <span
               className={cn(
-                "flex h-10 w-10 items-center justify-center rounded-full border text-sm font-semibold",
+                "flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-bold",
                 isActive
-                  ? "border-brand-curry bg-brand-curry text-brand-black"
+                  ? "border-black bg-white text-brand-black"
                   : isCompleted
-                    ? "border-brand-green bg-brand-green text-brand-black"
-                    : "border-border-subtle bg-white/70 text-ink"
+                    ? "border-black bg-white text-brand-black"
+                    : "border-black bg-white text-ink"
               )}
             >
               {index + 1}
             </span>
             <div className="flex flex-col">
-              <span className="text-xs uppercase tracking-[0.2em]">Step {index + 1}</span>
-              <span className="text-sm font-semibold">{label}</span>
+              <span className="text-xs font-bold uppercase tracking-[0.2em]">Step {index + 1}</span>
+              <span className="text-sm font-bold">{label}</span>
             </div>
           </button>
         );

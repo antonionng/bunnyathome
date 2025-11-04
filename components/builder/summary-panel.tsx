@@ -44,8 +44,8 @@ export function SummaryPanel({
     }
 
     return (
-      <div key={category} className="space-y-3 rounded-3xl border border-border-subtle bg-white/85 p-5">
-        <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted">
+      <div key={category} className="space-y-3 rounded-lg border-2 border-black bg-white p-5">
+        <div className="flex items-center justify-between text-xs font-bold uppercase tracking-[0.2em] text-ink-muted">
           <span>{label}</span>
           <span>{entries.length} selected</span>
         </div>
@@ -58,10 +58,10 @@ export function SummaryPanel({
             return (
               <li key={id} className="flex items-center justify-between gap-4">
                 <div>
-                  <p className="font-semibold">{product.name}</p>
+                  <p className="font-bold">{product.name}</p>
                   <p className="text-xs text-ink-muted">Qty {quantity}</p>
                 </div>
-                <span className="text-sm font-semibold text-brand-curry">
+                <span className="text-sm font-bold text-brand-curry">
                   {formatFromPence(product.price * quantity)}
                 </span>
               </li>
@@ -83,30 +83,30 @@ export function SummaryPanel({
   };
 
   return (
-    <aside className="glass-panel flex h-fit flex-col gap-6 p-6">
+    <aside className="rounded-2xl border-2 border-black bg-white p-6 shadow-lg flex h-fit flex-col gap-6 section-border-pink">
       <div className="space-y-2">
-        <span className="tag-pill bg-brand-curry/20 text-brand-black">Your box</span>
-        <h3 className="text-xl font-semibold text-ink">Durban night in</h3>
+        <span className="tag-pill bg-brand-pink text-brand-black">Your box</span>
+        <h3 className="text-xl font-bold text-ink">Durban night in</h3>
         <p className="text-sm text-ink-muted">
-          Keep tweaking flavour, spice, and pairings. We’ll save this box to your profile soon.
+          Keep tweaking flavour, spice, and pairings. We'll save this box to your profile soon.
         </p>
       </div>
 
-      <div className="space-y-3 rounded-3xl border border-brand-curry/40 bg-white/80 p-5">
-        <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted">
+      <div className="space-y-3 rounded-lg border-2 border-black bg-brand-curry p-5">
+        <div className="flex items-center justify-between text-xs font-bold uppercase tracking-[0.2em] text-brand-black">
           <span>Bunny filling</span>
           <span>Spice · {selection.currySpiceLevel}</span>
         </div>
         {selectedCurry ? (
           <div className="space-y-2">
-            <p className="text-lg font-semibold text-ink">{selectedCurry.name}</p>
-            <p className="text-sm text-ink-muted">{selectedCurry.description}</p>
-            <span className="text-sm font-semibold text-brand-curry">
+            <p className="text-lg font-bold text-brand-black">{selectedCurry.name}</p>
+            <p className="text-sm text-brand-black/80">{selectedCurry.description}</p>
+            <span className="text-sm font-bold text-brand-black">
               {formatFromPence(selectedCurry.price)}
             </span>
           </div>
         ) : (
-          <p className="text-sm text-brand-coral">Choose a curry to unlock the next step.</p>
+          <p className="text-sm font-bold text-brand-coral">Choose a curry to unlock the next step.</p>
         )}
       </div>
 
@@ -115,23 +115,23 @@ export function SummaryPanel({
         {listForCategory("sauces", "Extras & treats")}
         {listForCategory("drinks", "Drinks")}
         {selection.notes && (
-          <div className="rounded-3xl border border-border-subtle bg-white/85 p-4 text-sm text-ink">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted">Notes</p>
+          <div className="rounded-lg border-2 border-black bg-white p-4 text-sm text-ink">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-ink-muted">Notes</p>
             <p className="mt-2">{selection.notes}</p>
           </div>
         )}
       </div>
 
-      <div className="space-y-3 rounded-3xl border border-brand-blue/40 bg-white/85 p-5 text-sm text-ink">
-        <div className="flex items-center justify-between font-semibold">
+      <div className="space-y-3 rounded-lg border-2 border-black bg-brand-blue p-5 text-sm text-brand-black">
+        <div className="flex items-center justify-between font-bold">
           <span>Items</span>
           <span>{totals.itemCount}</span>
         </div>
-        <div className="flex items-center justify-between text-lg font-semibold">
+        <div className="flex items-center justify-between text-lg font-bold">
           <span>Total</span>
           <span>{formatFromPence(totals.subtotal)}</span>
         </div>
-        <p className="text-xs text-ink-muted">Delivery, loyalty redemptions, and tips calculated at checkout.</p>
+        <p className="text-xs text-brand-black/80">Delivery, loyalty redemptions, and tips calculated at checkout.</p>
       </div>
 
       <div className="flex flex-col gap-3">
@@ -155,7 +155,7 @@ export function SummaryPanel({
         <Button
           variant="outline"
           size="sm"
-          className="w-full border-brand-coral/50 text-brand-coral"
+          className="w-full text-brand-coral"
           onClick={onReset}
         >
           Clear selection
