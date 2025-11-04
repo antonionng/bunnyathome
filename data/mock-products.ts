@@ -1,0 +1,178 @@
+import type { BuilderCatalog } from "@/types/builder";
+
+export const mockCatalog: BuilderCatalog = {
+  curries: [
+    {
+      id: "curry-lamb",
+      name: "Lamb Durban Curry",
+      description: "Bunny chow filling · 580-600g. Slow-braised lamb shoulder with potato.",
+      price: 1295,
+      spiceLevel: "Mild",
+      heatNotes: "Starts mellow — amp up with the boosters if you want that Grey Street burn.",
+      image: "/curries/lamb-durban-placeholder.png",
+      bunnyImage: "/curries/bunny/lamb-bunny-placeholder.png",
+      badge: "OG Durban",
+    },
+    {
+      id: "curry-beef",
+      name: "Beef Short Rib Durban Curry",
+      description: "Bunny chow filling · 580-600g. Bone-in short rib, tomato gravy, potato.",
+      price: 1295,
+      spiceLevel: "Mild",
+      heatNotes: "Rich marrow depth ready for a Very Hot boost if you twist the dial.",
+      image: "/curries/beef-durban-placeholder.png",
+      bunnyImage: "/curries/bunny/beef-bunny-placeholder.png",
+      badge: "Chef's pick",
+    },
+    {
+      id: "curry-bean",
+      name: "Bean Durban Curry",
+      description: "Bunny chow filling · 580-600g. Heirloom beans, tamarind gravy, potato.",
+      price: 1125,
+      spiceLevel: "Mild",
+      heatNotes: "Naturally vegan. Wakes up with the Hot sachet and a spoon of chutney.",
+      image: "/curries/bean-durban-placeholder.png",
+      bunnyImage: "/curries/bunny/bean-bunny-placeholder.png",
+      badge: "Vegetarian",
+    },
+    {
+      id: "curry-chicken",
+      name: "Chicken Durban Curry",
+      description: "Bunny chow filling · 580-600g. Free-range chicken, potato, tomato-onion gravy.",
+      price: 1195,
+      spiceLevel: "Mild",
+      heatNotes: "Classic comfort — go Very Hot with fenugreek & mustard seed pops.",
+      image: "/curries/chicken-durban-placeholder.png",
+      bunnyImage: "/curries/bunny/chicken-bunny-placeholder.png",
+      badge: "House favourite",
+    },
+  ],
+  sides: [
+    {
+      id: "bread-loaf",
+      name: "Soft White Bunny Loaf",
+      description: "Fresh Durban-style unsliced loaf ready to fill.",
+      price: 495,
+      image: "/curries/chicken-durban-placeholder.svg",
+      badge: "Essential",
+    },
+    {
+      id: "bread-vetkoek",
+      name: "Vetkoek Pack (4)",
+      description: "Golden pillows for mini bunny sliders or dipping.",
+      price: 795,
+      image: "/curries/beef-short-rib-placeholder.svg",
+    },
+    {
+      id: "garnish-carrot",
+      name: "Pickled Carrot Salad",
+      description: "House vinaigrette with shredded carrot & onion.",
+      price: 200,
+      image: "/curries/bean-durban-placeholder.svg",
+    },
+    {
+      id: "bread-glutenfree",
+      name: "Gluten-Free Loaf",
+      description: "Special order loaf, baked weekly for coeliac-friendly nights.",
+      price: 650,
+      image: "/curries/lamb-durban-placeholder.svg",
+      maxQuantity: 1,
+    },
+  ],
+  sauces: [
+    {
+      id: "extra-fritters-ready",
+      name: "Pumpkin Fritters · Ready",
+      description: "Cinnamon sugar dusted, warm-and-serve dessert.",
+      price: 595,
+      image: "/curries/chicken-durban-placeholder.svg",
+      badge: "Sweet hit",
+    },
+    {
+      id: "extra-fritters-kit",
+      name: "Pumpkin Fritters · Kit",
+      description: "Mix, fry, coat. Makes 12 legendary fritters.",
+      price: 1195,
+      image: "/curries/beef-short-rib-placeholder.svg",
+    },
+    {
+      id: "extra-samoosa",
+      name: "Samoosas (12)",
+      description: "Hand-folded triangles with your choice of filling.",
+      price: 1295,
+      image: "/curries/bean-durban-placeholder.svg",
+      badge: "Most loved",
+    },
+    {
+      id: "extra-pork-rashers",
+      name: "Honey & Mustard Pork Rashers",
+      description: "400g prime slices. Air fry for 5 minutes.",
+      price: 995,
+      image: "/curries/beef-short-rib-placeholder.svg",
+    },
+    {
+      id: "extra-vetkoek-filling",
+      name: "Durban Vetkoek Mince Filling",
+      description: "500g spiced mince for stuffing vetkoek.",
+      price: 995,
+      image: "/curries/lamb-durban-placeholder.svg",
+    },
+    {
+      id: "extra-chutney",
+      name: "Mrs Balls Chutney (470ml)",
+      description: "The classic dip for every bunny night.",
+      price: 495,
+      image: "/curries/chicken-durban-placeholder.svg",
+    },
+    {
+      id: "extra-boerewors",
+      name: "Boerewors (500g)",
+      description: "Prime beef coil ready for the grill.",
+      price: 1095,
+      image: "/curries/beef-short-rib-placeholder.svg",
+    },
+    {
+      id: "extra-corn-ribs",
+      name: "Durban Curried Corn Ribs",
+      description: "Spiced charred corn pieces — heat & serve.",
+      price: 695,
+      image: "/curries/bean-durban-placeholder.svg",
+    },
+    {
+      id: "extra-biltong",
+      name: "Original Beef Biltong",
+      description: "100g prime beef — chewy, savoury, addictive.",
+      price: 795,
+      image: "/curries/lamb-durban-placeholder.svg",
+    },
+  ],
+  drinks: [
+    {
+      id: "drink-lassi",
+      name: "Salted Lassi",
+      description: "Yoghurt sip with toasted cumin salt.",
+      price: 425,
+      image:
+        "https://images.unsplash.com/photo-1527169402691-feff5539e52c?auto=format&fit=crop&w=900&q=80",
+    },
+    {
+      id: "drink-chai",
+      name: "Cardamom Chai",
+      description: "Slow-brewed tea concentrate, spiced and sweet.",
+      price: 475,
+      image:
+        "https://images.unsplash.com/photo-1527169402691-feff5539e52c?auto=format&fit=crop&w=900&q=80",
+    },
+    {
+      id: "drink-soda",
+      name: "Tamarind Soda",
+      description: "Tamarind, lime, fizzy uplift.",
+      price: 395,
+      image:
+        "https://images.unsplash.com/photo-1505935428862-770b6f24f629?auto=format&fit=crop&w=900&q=80",
+    },
+  ],
+};
+
+
+

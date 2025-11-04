@@ -1,0 +1,8 @@
+<svg width="960" height="640" viewBox="0 0 960 640" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="640" fill="#fab826"/>
+  <rect x="60" y="60" width="840" height="520" fill="none" stroke="#000000" stroke-width="6" stroke-opacity="0.08" stroke-dasharray="16 18"/>
+  <text x="50%" y="52%" font-family="'Helvetica Neue', Arial, sans-serif" font-size="62" fill="#000000" text-anchor="middle" font-weight="600">Lamb Durban Curry</text>
+  <text x="50%" y="60%" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" fill="#000000" text-anchor="middle" opacity="0.6">Placeholder visual</text>
+</svg>
+
+

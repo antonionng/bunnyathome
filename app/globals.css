@@ -3,21 +3,68 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: light;
   --background: #ffffff;
-  --foreground: #171717;
+  --surface: #ffffff;
+  --surface-muted: #ffffff;
+  --foreground: #1b1109;
+  --border-subtle: #000000;
+  --border-strong: #000000;
+  --brand-curry: #fab826;
+  --brand-pink: #d7adcc;
+  --brand-blue: #80ccdd;
+  --brand-coral: #ed908d;
+  --brand-green: #c1d780;
+  --brand-black: #0f0c08;
+  --ink: #1f140d;
+  --ink-muted: #5b4637;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border-subtle;
+  }
+
+  body {
+    @apply bg-[color:var(--background)] text-ink antialiased;
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+  }
+
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  ::selection {
+    background-color: rgba(250, 184, 38, 0.35);
+    color: var(--brand-black);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .section-border-curry {
+    @apply border-l-[6px] border-l-brand-curry;
+  }
+
+  .section-border-pink {
+    @apply border-l-[6px] border-l-brand-pink;
+  }
+
+  .section-border-blue {
+    @apply border-l-[6px] border-l-brand-blue;
+  }
+
+  .section-border-coral {
+    @apply border-l-[6px] border-l-brand-coral;
+  }
+
+  .section-border-green {
+    @apply border-l-[6px] border-l-brand-green;
+  }
+
+  .tag-pill {
+    @apply inline-flex items-center gap-1 rounded-full border-2 border-black px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-black;
+  }
 }
 
 @layer utilities {

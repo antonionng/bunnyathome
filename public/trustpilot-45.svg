@@ -1,0 +1,31 @@
+<svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title>BunnyAtHome Trustpilot Rating 4.5 Excellent</title>
+  <desc>Placeholder Trustpilot badge showing 4.5 stars and Excellent rating.</desc>
+  <rect width="180" height="40" rx="12" fill="#00B67A"/>
+  <g transform="translate(12,8)">
+    <rect x="0" y="0" width="24" height="24" rx="6" fill="#00995E"/>
+    <path d="M12 5.199L13.809 10.784H19.732L14.943 14.262L16.753 19.848L12 16.37L7.247 19.848L9.057 14.262L4.268 10.784H10.191L12 5.199Z" fill="white"/>
+  </g>
+  <g transform="translate(42,8)">
+    <rect x="0" y="0" width="24" height="24" rx="6" fill="#00995E" opacity="0.55"/>
+    <path d="M12 5.199L13.809 10.784H19.732L14.943 14.262L16.753 19.848L12 16.37L7.247 19.848L9.057 14.262L4.268 10.784H10.191L12 5.199Z" fill="white" opacity="0.85"/>
+  </g>
+  <g transform="translate(72,8)">
+    <rect x="0" y="0" width="24" height="24" rx="6" fill="#00995E" opacity="0.35"/>
+    <path d="M12 5.199L13.809 10.784H19.732L14.943 14.262L16.753 19.848L12 16.37L7.247 19.848L9.057 14.262L4.268 10.784H10.191L12 5.199Z" fill="white" opacity="0.65"/>
+  </g>
+  <g transform="translate(102,8)">
+    <rect x="0" y="0" width="24" height="24" rx="6" fill="#00995E" opacity="0.2"/>
+    <path d="M12 5.199L13.809 10.784H19.732L14.943 14.262L16.753 19.848L12 16.37L7.247 19.848L9.057 14.262L4.268 10.784H10.191L12 5.199Z" fill="white" opacity="0.4"/>
+  </g>
+  <g transform="translate(132,8)">
+    <rect x="0" y="0" width="24" height="24" rx="6" fill="#FFFFFF" opacity="0.7"/>
+    <path d="M12 5.199L13.809 10.784H19.732L14.943 14.262L16.753 19.848L12 16.37V5.199Z" fill="#00995E"/>
+  </g>
+  <text x="156" y="18" font-family="'Geist Sans', 'Inter', 'Arial', sans-serif" font-size="12" font-weight="600" fill="white">4.5</text>
+  <text x="156" y="30" font-family="'Geist Sans', 'Inter', 'Arial', sans-serif" font-size="10" letter-spacing="0.26em" fill="#003D2B" text-anchor="middle">EXCELLENT</text>
+</svg>
+
+
+
+
