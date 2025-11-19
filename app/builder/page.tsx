@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
-import { BunnyModal } from "@/components/builder/bunny-modal";
+import { useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { BunnyBuilderStep } from "@/components/builder/bunny-builder-step";
 import { CurryStep } from "@/components/builder/curry-step";
 import { QuantityStep } from "@/components/builder/quantity-step";
 import { SummaryPanel } from "@/components/builder/summary-panel";
@@ -12,25 +13,46 @@ import type { BuilderCatalog, BuilderSelection, BuilderStep } from "@/types/buil
 
 const catalog: BuilderCatalog = mockCatalog;
 
-const priceMap: Record<string, number> = {
+const bunnyFillingPrices: Record<string, number> = Object.fromEntries(
+  catalog.bunnyFillings.map((item) => [item.id, item.price])
+);
+
+const familyCurryPrices: Record<string, number> = Object.fromEntries(
+  catalog.familyCurries.map((item) => [item.id, item.price])
+);
+
+const otherPrices: Record<string, number> = {
   ...Object.fromEntries(catalog.sides.map((item) => [item.id, item.price])),
   ...Object.fromEntries(catalog.sauces.map((item) => [item.id, item.price])),
   ...Object.fromEntries(catalog.drinks.map((item) => [item.id, item.price])),
 };
 
-const renderStepComponent = (step: Exclude<BuilderStep, "summary">) => {
+const renderStepComponent = (step: Exclude<BuilderStep, "summary">, flow: "bunny" | "curry" | null) => {
+  // Filter breads from sides catalog
+  const breads = catalog.sides.filter(item => item.id.includes('bread'));
+  const otherSides = catalog.sides.filter(item => !item.id.includes('bread'));
+
   switch (step) {
+    case "bunny-builder":
+      return (
+        <BunnyBuilderStep 
+          breads={breads} 
+          bunnyFillings={catalog.bunnyFillings}
+          isOptional={flow === "curry"}
+        />
+      );
     case "curry":
-      return <CurryStep catalog={catalog.curries} />;
+      // Show only family curries (bunny fillings are now in bunny-builder step)
+      return <CurryStep bunnyFillings={[]} familyCurries={catalog.familyCurries} />;
     case "sides":
       return (
         <QuantityStep
           category="sides"
-          catalog={catalog.sides}
-          tagLabel="Step 2 · Bread & garnish"
-          title="Add your loaf and garnishes."
-          description="Pick the classic bunny loaf, vetkoek for sharing, or a gluten-free bake. Don’t forget the pickled carrot salad for proper crunch."
-          hint="Start with a soft white bunny loaf."
+          catalog={otherSides}
+          tagLabel="Step 3 · Sides & garnish"
+          title="Load up on Durban favourites."
+          description="Scoop up carrot salad, pickled veg, and all the garnishes that make bunny chow lekker."
+          hint="Carrot sambals are a must, boet!"
         />
       );
     case "sauces":
@@ -38,10 +60,10 @@ const renderStepComponent = (step: Exclude<BuilderStep, "summary">) => {
         <QuantityStep
           category="sauces"
           catalog={catalog.sauces}
-          tagLabel="Step 3 · Extras & treats"
-          title="Round it out with Durban favourites."
-          description="Scoop up pumpkin fritters, samoosas, boerewors, or braai-ready meats to build your spread."
-          hint="Pumpkin fritters sell out fast."
+          tagLabel="Step 4 · Extras & treats"
+          title="Round it out with braai snacks."
+          description="Pumpkin fritters, samoosas, boerewors, biltong—stack the box high with all the good stuff."
+          hint="Pumpkin fritters sell out fast, sharp sharp!"
         />
       );
     case "drinks":
@@ -49,32 +71,40 @@ const renderStepComponent = (step: Exclude<BuilderStep, "summary">) => {
         <QuantityStep
           category="drinks"
           catalog={catalog.drinks}
-          tagLabel="Step 4 · Drinks"
-          title="Sip pairings to finish the ritual."
-          description="Cardamom chai, salted lassi, tamarind fizz. Chill a few bottles and you're set."
-          hint="Keep spice in check with a cooling sip."
+          tagLabel="Step 5 · Drinks"
+          title="Cool down the spice."
+          description="Cardamom chai, salted lassi, tamarind fizz. Chill a few bottles and you're sorted."
+          hint="Lassi is lekker for taming the heat!"
         />
       );
   }
 };
 
-const stepOrder: BuilderStep[] = ["curry", "sides", "sauces", "drinks", "summary"];
-
 export default function BuilderPage() {
+  const searchParams = useSearchParams();
+  const flowParam = searchParams.get("flow");
+  const parsedFlow: "bunny" | "curry" | null =
+    flowParam === "bunny" || flowParam === "curry" ? flowParam : null;
+
   const step = useBuilderStore((state) => state.step);
+  const flow = useBuilderStore((state) => state.flow);
+  const setFlow = useBuilderStore((state) => state.setFlow);
+  const getStepOrder = useBuilderStore((state) => state.getStepOrder);
   const goToStep = useBuilderStore((state) => state.goToStep);
   const nextStep = useBuilderStore((state) => state.nextStep);
   const prevStep = useBuilderStore((state) => state.prevStep);
   const reset = useBuilderStore((state) => state.reset);
-  const openBunnyModal = useBuilderStore((state) => state.openBunnyModal);
-  const closeBunnyModal = useBuilderStore((state) => state.closeBunnyModal);
-  const markBunnyPromptSeen = useBuilderStore((state) => state.markBunnyPromptSeen);
-  const setItemQuantity = useBuilderStore((state) => state.setItemQuantity);
-  const bunnyPromptSeen = useBuilderStore((state) => state.bunnyPromptSeen);
+
+  // Set flow from URL param on mount
+  useEffect(() => {
+    if (parsedFlow && parsedFlow !== flow) {
+      setFlow(parsedFlow);
+    }
+  }, [parsedFlow, flow, setFlow]);
   
   // Individual selectors to avoid recreating objects
-  const curryId = useBuilderStore((state) => state.curryId);
-  const currySpiceLevel = useBuilderStore((state) => state.currySpiceLevel);
+  const bunnyFillings = useBuilderStore((state) => state.bunnyFillings);
+  const familyCurries = useBuilderStore((state) => state.familyCurries);
   const sides = useBuilderStore((state) => state.sides);
   const sauces = useBuilderStore((state) => state.sauces);
   const drinks = useBuilderStore((state) => state.drinks);
@@ -82,32 +112,33 @@ export default function BuilderPage() {
 
   const selection = useMemo<BuilderSelection>(
     () => ({
-      curryId,
-      currySpiceLevel,
+      bunnyFillings,
+      familyCurries,
       sides,
       sauces,
       drinks,
       notes,
     }),
-    [curryId, currySpiceLevel, sides, sauces, drinks, notes]
+    [bunnyFillings, familyCurries, sides, sauces, drinks, notes]
   );
 
-  const selectedCurry = useMemo(
-    () => catalog.curries.find((curry) => curry.id === curryId) ?? null,
-    [curryId]
+  const hasCurries = useMemo(
+    () => Object.keys(bunnyFillings).length > 0 || Object.keys(familyCurries).length > 0,
+    [bunnyFillings, familyCurries]
   );
 
   const totals = useMemo(
-    () => calculateTotals(selection, priceMap, selectedCurry?.price ?? null),
-    [selection, selectedCurry?.price]
+    () => calculateTotals(selection, bunnyFillingPrices, familyCurryPrices, otherPrices),
+    [selection]
   );
 
   const handleStepClick = (target: BuilderStep) => {
+    const stepOrder = getStepOrder();
     const currentIndex = stepOrder.indexOf(step);
     const targetIndex = stepOrder.indexOf(target);
     const attemptingForward = targetIndex > currentIndex;
 
-    if (attemptingForward && !curryId) {
+    if (attemptingForward && !hasCurries) {
       return;
     }
 
@@ -119,11 +150,7 @@ export default function BuilderPage() {
       return;
     }
     if (step === "curry") {
-      if (!curryId) {
-        return;
-      }
-      if (!bunnyPromptSeen) {
-        openBunnyModal();
+      if (!hasCurries) {
         return;
       }
     }
@@ -137,20 +164,7 @@ export default function BuilderPage() {
     prevStep();
   };
 
-  const canProceed = step === "curry" ? !!curryId : true;
-
-  const handleMakeBunny = () => {
-    markBunnyPromptSeen();
-    closeBunnyModal();
-    setItemQuantity("sides", "bread-loaf", 1);
-    goToStep("sides");
-  };
-
-  const handleSkipBunny = () => {
-    markBunnyPromptSeen();
-    closeBunnyModal();
-    nextStep();
-  };
+  const canProceed = step === "curry" ? hasCurries : true;
 
   return (
     <div className="space-y-10">
@@ -158,14 +172,20 @@ export default function BuilderPage() {
         <div className="rounded-2xl border-2 border-black bg-white p-6 shadow-lg section-border-curry">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <span className="tag-pill bg-brand-curry text-brand-black">Custom box builder</span>
-              <h1 className="mt-3 text-3xl font-bold text-ink">
-                Craft your Durban bunny chow night.
+              <div className="inline-flex items-center gap-2 rounded-full border-2 border-black bg-brand-curry px-4 py-2">
+                <span className="text-xl">{flow === "bunny" ? "🥖" : flow === "curry" ? "🍲" : "🔥"}</span>
+                <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-black">Custom box builder</span>
+              </div>
+              <h1 className="mt-4 text-4xl font-bold text-ink lg:text-5xl">
+                {flow === "bunny"
+                  ? "Load the loaf, then stack the curry!"
+                  : flow === "curry"
+                  ? "Crank the curry, then match the loaf!"
+                  : "Craft your Durban bunny chow night."}
               </h1>
             </div>
-            <p className="max-w-xl text-sm text-ink-muted">
-              Tune spice levels, load up sides, and pick your ritual drinks. We'll save this build to your
-              account soon.
+            <p className="max-w-xl text-xl text-ink-muted">
+              Tune spice levels, load up braai snacks, and cool it down with lekker drinks. Your build gets saved for lightning-fast reorders, boet!
             </p>
           </div>
           <Stepper current={step} onStepClick={handleStepClick} />
@@ -175,18 +195,18 @@ export default function BuilderPage() {
       <div className="grid gap-8 lg:grid-cols-[minmax(0,_1fr)_380px]">
         <div className="space-y-12">
           {step === "summary" ? (
-            <div className="rounded-2xl border-2 border-black bg-white p-8 shadow-lg text-center section-border-green">
-              <span className="tag-pill mx-auto bg-brand-green text-brand-black">
-                Step 5 · Summary
-              </span>
-              <h2 className="mt-6 text-3xl font-bold text-ink">Your Durban feast is locked in.</h2>
-              <p className="mx-auto mt-4 max-w-2xl text-base text-ink-muted">
-                We're polishing the checkout flow — soon you'll send this box straight to your door or save
-                it for recurring deliveries. For now, take a screenshot or keep building.
+            <div className="rounded-2xl border-3 border-black bg-white p-8 shadow-xl text-center section-border-coral">
+              <div className="inline-flex items-center gap-2 rounded-full border-2 border-black bg-brand-coral px-4 py-2 mb-4">
+                <span className="text-xl">🔥</span>
+                <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-black">Step {flow === "bunny" ? "5" : "5"} · Your Spread</span>
+              </div>
+              <h2 className="mt-6 text-4xl font-bold text-ink lg:text-5xl">Sharp sharp! Your feast is ready.</h2>
+              <p className="mx-auto mt-4 max-w-2xl text-xl text-ink-muted">
+                Checkout's being fine-tuned — soon you'll send this straight to your door or save it for recurring drops. For now, screenshot or keep stacking!
               </p>
             </div>
           ) : (
-            renderStepComponent(step)
+            renderStepComponent(step, flow)
           )}
         </div>
         <SummaryPanel
@@ -200,7 +220,6 @@ export default function BuilderPage() {
           canProceed={canProceed}
         />
       </div>
-      <BunnyModal catalog={catalog.curries} onMakeBunny={handleMakeBunny} onSkip={handleSkipBunny} />
     </div>
   );
 }

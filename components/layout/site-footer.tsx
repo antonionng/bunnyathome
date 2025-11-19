@@ -4,13 +4,18 @@ import Image from "next/image";
 const footerLinks = {
   product: [
     { label: "Custom Builder", href: "/builder" },
-    { label: "Featured Boxes", href: "#boxes" },
-    { label: "Subscriptions", href: "#subscriptions" },
+    { label: "Featured Boxes", href: "/boxes" },
+    { label: "Subscriptions", href: "/subscriptions" },
   ],
   company: [
-    { label: "Our Story", href: "#experience" },
-    { label: "Sourcing", href: "#sourcing" },
-    { label: "Community", href: "#community" },
+    { label: "Experience", href: "/experience" },
+    { label: "Our Story", href: "/about" },
+    { label: "Community", href: "/community" },
+  ],
+  support: [
+    { label: "Help Centre", href: "/help" },
+    { label: "Track Order", href: "/help#track" },
+    { label: "WhatsApp", href: "https://wa.me/447700900000" },
   ],
   connect: [
     { label: "hello@bunnyathome.co.uk", href: "mailto:hello@bunnyathome.co.uk" },
@@ -31,7 +36,7 @@ export function SiteFooter() {
             className="h-10 w-auto"
           />
           <p className="max-w-xs text-sm text-white/70">
-            Durban-born, UK-made. Premium bunny chow kits, ready in 20 minutes.
+            Durban-born, UK-made. Lekker bunny chow kits from Grey Street to your kitchen in 20 minutes, bru.
           </p>
         </div>
         {Object.entries(footerLinks).map(([category, links]) => (

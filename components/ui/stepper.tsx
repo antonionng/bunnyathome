@@ -1,14 +1,14 @@
 import { cn } from "@/lib/utils";
 import type { BuilderStep } from "@/types/builder";
+import { useBuilderStore } from "@/store/builder-store";
 
 const stepLabels: Record<Exclude<BuilderStep, "summary">, string> = {
-  curry: "Choose curry",
+  "bunny-builder": "Build bunny",
+  curry: "Family curries",
   sides: "Select sides",
-  sauces: "Add sauces",
+  sauces: "Add extras",
   drinks: "Pick drinks",
 };
-
-const order: BuilderStep[] = ["curry", "sides", "sauces", "drinks", "summary"];
 
 interface StepperProps {
   current: BuilderStep;
@@ -16,6 +16,10 @@ interface StepperProps {
 }
 
 export function Stepper({ current, onStepClick }: StepperProps) {
+  const getStepOrder = useBuilderStore((state) => state.getStepOrder);
+  const bunnyBuilderPart = useBuilderStore((state) => state.bunnyBuilderPart);
+  const order = getStepOrder();
+
   return (
     <div className="mt-4 flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap">
       {order.map((step, index) => {
@@ -84,7 +88,12 @@ export function Stepper({ current, onStepClick }: StepperProps) {
               {index + 1}
             </span>
             <div className="flex flex-col">
-              <span className="text-xs font-bold uppercase tracking-[0.2em]">Step {index + 1}</span>
+              <span className="text-xs font-bold uppercase tracking-[0.2em]">
+                Step {index + 1}
+                {step === "bunny-builder" && isActive && (
+                  <span className="ml-2 text-brand-coral">({bunnyBuilderPart}/2)</span>
+                )}
+              </span>
               <span className="text-sm font-bold">{label}</span>
             </div>
           </button>

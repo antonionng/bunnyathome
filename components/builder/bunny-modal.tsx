@@ -14,11 +14,17 @@ interface BunnyModalProps {
 
 export function BunnyModal({ catalog, onMakeBunny, onSkip }: BunnyModalProps) {
   const showBunnyModal = useBuilderStore((state) => state.showBunnyModal);
-  const curryId = useBuilderStore((state) => state.curryId);
+  const bunnyFillings = useBuilderStore((state) => state.bunnyFillings);
+
+  // Get the first bunny filling (this modal shows when first bunny is added)
+  const firstBunnyId = useMemo(
+    () => Object.keys(bunnyFillings)[0],
+    [bunnyFillings]
+  );
 
   const filling = useMemo(
-    () => catalog.find((item) => item.id === curryId) ?? null,
-    [catalog, curryId]
+    () => catalog.find((item) => item.id === firstBunnyId) ?? null,
+    [catalog, firstBunnyId]
   );
 
   useEffect(() => {
@@ -62,21 +68,21 @@ export function BunnyModal({ catalog, onMakeBunny, onSkip }: BunnyModalProps) {
         </div>
         <div className="space-y-6 px-8 py-7">
           <div className="space-y-2">
-            <span className="tag-pill bg-brand-curry text-brand-black">Make it a bunny</span>
+            <span className="tag-pill bg-brand-curry text-brand-black">Sharp sharp!</span>
             <h2 id="bunny-modal-title" className="text-2xl font-bold text-ink">
-              Finish {filling.name} with a loaf?
+              Ready to make it a proper bunny?
             </h2>
             <p className="text-sm text-ink-muted">
-              We'll drop a fresh Durban-style loaf and the house pickled carrot salad into your box so you can
-              plate the full bunny chow. You can tweak or remove it on the next step.
+              We'll drop a fresh Durban loaf and the house carrot sambal into your box so you can quarter it,
+              hollow it, and pack in that {filling.name}. You can tweak or remove them on the next step.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button className="w-full sm:w-auto" onClick={onMakeBunny}>
-              Make it a bunny
+              Lekker, add the loaf
             </Button>
             <Button variant="outline" className="w-full sm:w-auto text-ink" onClick={onSkip}>
-              Not now
+              Nah, just the filling
             </Button>
           </div>
         </div>
